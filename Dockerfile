@@ -28,12 +28,12 @@ RUN  echo "deb http://archive.ubuntu.com/ubuntu ${UBUNTU_FLAVOR} main universe\n
   && echo "deb http://archive.ubuntu.com/ubuntu ${UBUNTU_FLAVOR}-updates main universe\n" >> /etc/apt/sources.list \
   && echo "deb http://archive.ubuntu.com/ubuntu ${UBUNTU_FLAVOR}-security main universe\n" >> /etc/apt/sources.list
 
-MAINTAINER Diego Molina <diemol@gmail.com>
-MAINTAINER Leo Gallucci <elgalu3+dosel@gmail.com>
+MAINTAINER Ricardo Maia <ricardo.santos@gsw.com.br>
+MAINTAINER Victor Siqueira <victor.siqueira@gsw.com.br>
 
 # https://github.com/docker/docker/pull/25466#discussion-diff-74622923R677
-LABEL maintainer "Diego Molina <diemol@gmail.com>"
-LABEL maintainer "Leo Gallucci <elgalu3+dosel@gmail.com>"
+LABEL maintainer " Ricardo Maia <ricardo.santos@gsw.com.br>"
+LABEL maintainer "Victor Siqueira <victor.siqueira@gsw.com.br>"
 
 # No interactive frontend during docker build
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -163,7 +163,7 @@ RUN apt -qqy update \
 # Full list at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 #  e.g. "US/Pacific" for Los Angeles, California, USA
 # e.g. ENV TZ "US/Pacific"
-ENV TZ="Europe/Berlin"
+ENV TZ="America/Sao_Paulo"
 # Apply TimeZone
 # Layer size: tiny: 1.339 MB
 RUN echo "Setting time zone to '${TZ}'" \
@@ -646,7 +646,7 @@ COPY bin/fail /usr/bin/
 #===============
 # TODO: Use Google fingerprint to verify downloads
 #  https://www.google.de/linuxrepositories/
-ARG EXPECTED_CHROME_VERSION="75.0.3770.100"
+ARG EXPECTED_CHROME_VERSION="76.0.3809.87"
 ENV CHROME_URL="https://dl.google.com/linux/direct" \
     CHROME_BASE_DEB_PATH="/home/seluser/chrome-deb/google-chrome" \
     GREP_ONLY_NUMS_VER="[0-9.]{2,20}"
@@ -689,7 +689,7 @@ USER seluser
 # Chrome webdriver
 #==================
 # How to get cpu arch dynamically: $(lscpu | grep Architecture | sed "s/^.*_//")
-ARG CHROME_DRIVER_VERSION="75.0.3770.8"
+ARG CHROME_DRIVER_VERSION="76.0.3809.68"
 ENV CHROME_DRIVER_BASE="chromedriver.storage.googleapis.com" \
     CPU_ARCH="64"
 ENV CHROME_DRIVER_FILE="chromedriver_linux${CPU_ARCH}.zip"
